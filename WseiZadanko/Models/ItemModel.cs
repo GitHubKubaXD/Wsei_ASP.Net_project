@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WseiZadanko.Models
 {
-    public class ExchangeModel
+    public class ItemModel
     {
         public string Name { get; set; }
         public string Description { get; set; }

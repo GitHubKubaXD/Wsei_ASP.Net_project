@@ -9,23 +9,36 @@ namespace WseiZadanko.Controllers
 {
     public class ExchangesController : Controller
     {
+        public IActionResult Show(string id)
+        {
+            return View();
+        }
+
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Add()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index(ExchangeModel exchange)
+        public IActionResult Add(ItemModel item)
         {
-            var viewModel = new ExchangeAddedViewModel
+            // TODO add to database
+
+            var viewModel = new AddNewItemConfirmationViewModel
             {
-                NumberOfCharsInName = exchange.Name.Length,
-                NumberOfCharsInDescription = exchange.Description.Length,
-                IsHidden = !exchange.IsVisible
+                Id = 1,
+                Name = item.Name,
             };
 
-            return View("ExchangeAdded", viewModel);
+            //return View("AddConfirmation", viewModel);
+            return RedirectToAction("AddConfirmation", new { itemId = 1 });
+        }
+
+        [HttpGet]
+        public IActionResult AddConfirmation(int itemId)
+        {
+            return View(itemId);
         }
     }
 }
